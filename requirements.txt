@@ -1,0 +1,20 @@
+# SonaRAG dependencies, grouped by the phase that introduces them.
+# Phase 1 (chunking) needs NONE of these — it's pure standard library.
+# We install the rest when we reach each phase.
+
+# Phase 2 — embeddings & vector store
+sentence-transformers>=2.7.0
+chromadb>=0.5.0
+pysqlite3-binary; sys_platform == "linux"   # Streamlit Cloud: modern sqlite for chromadb
+
+# Phase 4 — answer generation (current backend: Groq, free hosted)
+groq>=1.0.0
+python-dotenv>=1.0.0      # loads GROQ_API_KEY from a .env file
+# anthropic>=0.40.0       # uncomment if you switch LLM_BACKEND to "claude"
+
+# Phase 5 — interface
+streamlit>=1.36.0
+
+# Phase 6 — document loading (PDFs) + testing
+pypdf>=4.2.0
+pytest>=8.0.0

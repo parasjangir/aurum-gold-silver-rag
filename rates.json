@@ -1,0 +1,15 @@
+{
+  "updated": "2026-06-17 13:15",
+  "city": "GoldAPI.io \u00b7 live spot",
+  "source": "GoldAPI.io",
+  "currency": "INR",
+  "per_gram": {
+    "gold_24k": 13130.97,
+    "gold_22k": 12036.72,
+    "gold_18k": 9848.22,
+    "gold_14k": 7659.73,
+    "silver": 212.63
+  },
+  "return_less_per_gram": 500,
+  "note": "Live spot from GoldAPI.io (XAU/XAG, INR). Buyback spread is a local convention."
+}

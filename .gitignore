@@ -1,0 +1,19 @@
+# Secrets — NEVER commit your API key
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Vector store (regenerated from knowledge/)
+vector_store/
+
+# OS
+.DS_Store
+
+# Misc
+install.log

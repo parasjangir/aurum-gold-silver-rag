@@ -1,0 +1,68 @@
+[
+  {
+    "question": "What are the three marks on a BIS hallmark?",
+    "expect": "answer",
+    "sources": ["01_hallmarking_bis.md"],
+    "must_include": ["HUID"]
+  },
+  {
+    "question": "What purity is 22 karat gold?",
+    "expect": "answer",
+    "sources": ["02_purity_and_karat.md"],
+    "must_include": ["91.6"]
+  },
+  {
+    "question": "What is 925 sterling silver?",
+    "expect": "answer",
+    "sources": ["08_silver.md", "02_purity_and_karat.md"],
+    "must_include": ["92.5", "925"]
+  },
+  {
+    "question": "What GST rate is applied when buying gold jewellery?",
+    "expect": "answer",
+    "sources": ["03_gst_and_pricing.md"],
+    "must_include": ["3%"]
+  },
+  {
+    "question": "How can I verify a hallmark's HUID?",
+    "expect": "answer",
+    "sources": ["04_reading_a_hallmark.md"],
+    "must_include": ["CARE"]
+  },
+  {
+    "question": "How do I calculate the pure gold weight in a 10 gram 22K chain?",
+    "expect": "answer",
+    "sources": ["02_purity_and_karat.md", "06_gold_rate_and_bhav.md"],
+    "must_include": ["9.16"]
+  },
+  {
+    "question": "What is today's 22K gold rate?",
+    "expect": "answer",
+    "sources": ["06_gold_rate_and_bhav.md"],
+    "must_include": ["22"]
+  },
+  {
+    "question": "What are typical making charges on gold jewellery?",
+    "expect": "answer",
+    "sources": ["05_making_charges.md"],
+    "must_include": ["making"]
+  },
+  {
+    "question": "Is a Sovereign Gold Bond better than buying jewellery?",
+    "expect": "answer",
+    "sources": ["07_buying_selling_investment.md"],
+    "must_include": ["bond", "SGB", "making"]
+  },
+  {
+    "question": "What's the weather in Mumbai today?",
+    "expect": "refuse"
+  },
+  {
+    "question": "Who won the IPL 2024 final?",
+    "expect": "refuse"
+  },
+  {
+    "question": "Explain the French Revolution.",
+    "expect": "refuse"
+  }
+]
