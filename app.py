@@ -257,6 +257,17 @@ header[data-testid="stHeader"]{ background:transparent; }
 ::-webkit-scrollbar-thumb{ background:linear-gradient(var(--gold-3),var(--gold-2)); border-radius:8px; }
 ::-webkit-scrollbar-track{ background:transparent; }
 ::selection{ background:rgba(230,180,34,.30); color:#fff; }
+
+/* MOBILE: a fixed, transform-animated full-screen layer + backdrop-filter make
+   iOS Safari render the whole page blurry. Drop those GPU-heavy effects on small
+   screens — the static gold look stays crisp. */
+@media (max-width: 820px){
+  .stApp::before{ animation:none !important; }
+  .aurum-logo{ animation:none !important; filter:none !important; font-size:2.5rem !important; }
+  .rate-card, [data-testid="stChatMessage"], [data-testid="stChatInput"],
+  .aurum-chip{ backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+  .rate-card .v{ text-shadow:none !important; }
+}
 </style>
 """,
     unsafe_allow_html=True,
