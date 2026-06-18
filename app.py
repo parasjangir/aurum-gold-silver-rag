@@ -143,13 +143,14 @@ st.markdown(
   --stroke:rgba(230,180,34,.22); --text:#EAECEF; --muted:#9AA3B2;
 }
 
+html, body{ background:linear-gradient(180deg,var(--bg-0),var(--bg-1)); }
 .stApp{
-  background:linear-gradient(180deg,var(--bg-0),var(--bg-1));
+  background:transparent;
   color:var(--text); font-family:'Outfit',sans-serif;
 }
 /* animated gold aura behind everything */
 .stApp::before{
-  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
   background:
     radial-gradient(620px 320px at 14% 16%, rgba(230,180,34,.13), transparent 60%),
     radial-gradient(760px 380px at 86% 0%, rgba(255,227,154,.10), transparent 60%),
@@ -157,8 +158,7 @@ st.markdown(
   animation:aura 16s ease-in-out infinite alternate;
 }
 @keyframes aura{ from{transform:translate3d(0,0,0) scale(1);} to{transform:translate3d(0,-22px,0) scale(1.05);} }
-.block-container{position:relative; z-index:1; padding-top:2rem; max-width:840px;}
-[data-testid="stSidebar"]{position:relative; z-index:1;}
+.block-container{ padding-top:2rem; max-width:840px; }
 #MainMenu, footer { display:none; }
 header[data-testid="stHeader"]{ background:transparent; }
 /* The sidebar open button lives in the toolbar — DON'T hide the toolbar.
