@@ -40,6 +40,7 @@ st.set_page_config(
     page_title=f"{config.APP_NAME} · {config.APP_TAGLINE}",
     page_icon="🪙",
     layout="centered",
+    initial_sidebar_state="expanded",   # show the 🌐 language switcher + bhav editor on load
 )
 
 # --------------------------------------------------------------------------- #
@@ -308,12 +309,17 @@ def _auto_sync_rates() -> None:
 
 _auto_sync_rates()
 rates = load_rates()
+
+# Reserve the header slot, then show the language switcher right beneath it — in
+# the MAIN area so it's always visible (not tucked away in the sidebar).
+hero = st.container()
+language = st.segmented_control(
+    "🌐 Language / भाषा", list(UI.keys()), default="English", key="lang"
+) or "English"
+t = UI[language]
+
 with st.sidebar:
     st.markdown(f"## {config.APP_NAME}")
-    language = st.segmented_control(
-        "🌐 Language", list(UI.keys()), default="English", key="lang"
-    ) or "English"
-    t = UI[language]
     st.caption(t["tagline"])
     st.divider()
     st.subheader(t["bhav"])
@@ -347,8 +353,9 @@ with st.sidebar:
 # --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
-st.markdown(
-    f"""
+with hero:
+    st.markdown(
+        f"""
 <div class="aurum-hero">
   <div class="aurum-logo">{config.APP_NAME} 🪙</div>
   <div class="aurum-tag">{t["tagline"]}</div>
@@ -356,8 +363,8 @@ st.markdown(
 </div>
 <div class="gold-rule"></div>
 """,
-    unsafe_allow_html=True,
-)
+        unsafe_allow_html=True,
+    )
 
 _warm_up()
 render_rates_strip(rates, t)
