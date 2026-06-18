@@ -159,7 +159,16 @@ st.markdown(
 @keyframes aura{ from{transform:translate3d(0,0,0) scale(1);} to{transform:translate3d(0,-22px,0) scale(1.05);} }
 .block-container{position:relative; z-index:1; padding-top:2rem; max-width:840px;}
 [data-testid="stSidebar"]{position:relative; z-index:1;}
-#MainMenu,header[data-testid="stHeader"],footer{visibility:hidden;}
+#MainMenu, footer { display:none; }
+header[data-testid="stHeader"]{ background:transparent; }
+/* The sidebar open button lives in the toolbar — DON'T hide the toolbar.
+   Make that button an obvious gold ☰ control in the top-left. */
+[data-testid="stExpandSidebarButton"]{ visibility:visible !important; opacity:1 !important; }
+[data-testid="stExpandSidebarButton"] button{
+  background:linear-gradient(92deg,var(--gold-1),var(--gold-2)) !important;
+  color:#1a1205 !important; border:none !important; border-radius:10px !important;
+  box-shadow:0 4px 18px rgba(230,180,34,.55) !important;
+}
 
 /* Hero */
 .aurum-hero{ text-align:center; margin-bottom:.3rem; }
@@ -309,18 +318,12 @@ def _auto_sync_rates() -> None:
 
 _auto_sync_rates()
 rates = load_rates()
-
-# Reserve the header slot, then show the language switcher right beneath it — in
-# the MAIN area so it's always visible (not tucked away in the sidebar).
-hero = st.container()
-language = st.segmented_control(
-    "🌐 Language / भाषा", list(UI.keys()), default="English", key="lang"
-) or "English"
-t = UI[language]
-
 with st.sidebar:
     st.markdown(f"## {config.APP_NAME}")
-    st.caption(t["tagline"])
+    language = st.segmented_control(
+        "🌐 Language / भाषा", list(UI.keys()), default="English", key="lang"
+    ) or "English"
+    t = UI[language]
     st.divider()
     st.subheader(t["bhav"])
     st.caption(t["bhav_cap"])
@@ -353,9 +356,8 @@ with st.sidebar:
 # --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
-with hero:
-    st.markdown(
-        f"""
+st.markdown(
+    f"""
 <div class="aurum-hero">
   <div class="aurum-logo">{config.APP_NAME} 🪙</div>
   <div class="aurum-tag">{t["tagline"]}</div>
@@ -363,8 +365,8 @@ with hero:
 </div>
 <div class="gold-rule"></div>
 """,
-        unsafe_allow_html=True,
-    )
+    unsafe_allow_html=True,
+)
 
 _warm_up()
 render_rates_strip(rates, t)
